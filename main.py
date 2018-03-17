@@ -23,10 +23,17 @@ else:
     #print("hello " + spy_salutation + spy_name)
 
     spy_salutation=input("Enter your salutation (Mr. or Mrs.)")
+    if not (spy_salutation == 'Mr.' or spy_salutation == 'Mrs.'):
+        print("you are entred wrong input")
+        sys.exit(0)
 
     spy_age=input("enter your age")
     #validating the age of the spy_age
-    if int(spy_age) <= 12:
+    if spy_age.isdigit() == False:
+        print("number is invalid")
+        print("number should be in digits only")
+        sys.exit(0)
+    elif int(spy_age) <= 12:
         print("Age is below 12")
         sys.exit(0)
     elif int(spy_age) >= 50:
