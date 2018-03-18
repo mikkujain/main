@@ -5,12 +5,17 @@ print("welcome to spychat program")
 
 choice = int(input("Enter 1 if u want to continuewith default settings "))
 if choice == 1:
-
+# user copy  the default value and put in.
     spy_name=default.spy_name
     spy_salutation=default.spy_salutation
     spy_age=default.spy_age
     spy_rating=default.spy_rating
-    #
+    print("hello " + spy_salutation + spy_name)
+    print("Your age is " + spy_age)
+    print("your rating is " + spy_rating)
+    if choice == 1:
+        print(default.spy_rating1)
+        sys.exit(0)
 
 
 else:
@@ -20,15 +25,15 @@ else:
         print("Name is invalid")
         print("Name should be lies in A to Z and a to z")
         sys.exit(0)
-    #print("hello " + spy_salutation + spy_name)
 
+# check the salutation entered is correct or not
     spy_salutation=input("Enter your salutation (Mr. or Mrs.)")
     if not (spy_salutation == 'Mr.' or spy_salutation == 'Mrs.'):
         print("you are entred wrong input")
         sys.exit(0)
 
+#validating the age of the spy_age
     spy_age=input("enter your age")
-    #validating the age of the spy_age
     if spy_age.isdigit() == False:
         print("number is invalid")
         print("number should be in digits only")
@@ -40,9 +45,12 @@ else:
         print("Age is above 50")
         sys.exit(0)
 
-    #print("Your age is " + spy_age)
-
+# to check the rating of user
     spy_rating=input("enteryour rating (A or B or C)")
+
+    print("hello " + spy_salutation + spy_name)
+    print("Your age is " + spy_age)
+    print("your rating is " + spy_rating)
     #rating of the spy
     if spy_rating == 'A':
         print("you are 3 star spy")
@@ -53,10 +61,3 @@ else:
     else:
         print("you have entered incorrect rating")
         sys.exit(0)
-    #print("your rating is " + spy_rating)
-print("hello " + spy_salutation + spy_name)
-print("Your age is " + spy_age)
-print("your rating is " + spy_rating)
-if choice == 1:
-    print(default.spy_rating1)
-    sys.exit(0)
