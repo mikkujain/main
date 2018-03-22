@@ -2,6 +2,49 @@ import sys
 import default
 
 print("welcome to spychat program")
+STATUS_MESSAGE=[]
+def add_status(current_status_message):
+    if (current_status_message !=None):
+        print("Your current status is:" + current_status_message)
+
+    else:
+        print("U don't have any status message ")
+
+    update_choice= input("Do u want to select older status (Y/N)?: ")
+    if update_choice.upper()=='N':
+        new_status_message=input("Enter a new status message")
+
+        if len(new_status_message) > 0:
+            updated_status_message=new_status_message
+            STATUS_MESSAGE.append(updated_status_message)
+
+    elif update_choice.upper()=='Y':
+        if  STATUS_MESSAGE !=0:
+            print("Go Ahead and select the status")
+        if not any(STATUS_MESSAGE) :
+            print("You can't select it becoz the list is empty")
+            sys.exit(0)
+        for i in range(len(STATUS_MESSAGE)):
+            print(str(i+1) + " " + STATUS_MESSAGE[i])
+
+        message_selection = int(input("choose from older message"))
+        if message_selection < len(STATUS_MESSAGE):
+            updated_status_message=STATUS_MESSAGE[message_selection-1]
+
+    return updated_status_message
+
+def start_chat(spy_name,spy_age,spy_rating):
+    current_status_message=None
+    show_menu= True
+
+    while show_menu:
+        print("Choose the option which u wnat to do")
+        menu_choice=int(input("1. Add a status update. \n 2. Close application"))
+        if menu_choice==1:
+            print("U have choosen to update a status")
+            current_status_message=add_status(current_status_message)
+        elif menu_choice==2:
+            show_menu=False
 
 choice = int(input("Enter 1 if u want to continuewith default settings "))
 if choice == 1:
@@ -15,7 +58,7 @@ if choice == 1:
     print("your rating is " + spy_rating)
     if choice == 1:
         print(default.spy_rating1)
-        sys.exit(0)
+        #sys.exit(0)
 
 
 else:
@@ -61,3 +104,6 @@ else:
     else:
         print("you have entered incorrect rating")
         sys.exit(0)
+
+start_chat(spy_name,spy_age,spy_rating)
+#print(current_status_message)
