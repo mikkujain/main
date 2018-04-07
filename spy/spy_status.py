@@ -9,6 +9,11 @@ def add_status(current_status_message):
     #print the current status message
     if current_status_message == None:
         print("You do not have any current status")
+        print("You need to add a status")
+        message=input("Enter a status")
+        if len(message)>0:
+            updated_status_message=message
+            STATUS_MESSAGE.append(updated_status_message)
     else:
         print("Your current status is " + current_status_message)
 
@@ -34,7 +39,7 @@ def add_status(current_status_message):
     return updated_status_message
 
 def load_status():
-    read_object = open("status.csv", 'r')
+    read_object = open("status.csv", 'rb')
     reader = csv.reader(read_object)
     for row in reader:
         STATUS_MESSAGE.append(row[0])
@@ -45,9 +50,11 @@ def load_status():
         return None
 
 def save_status():
-    write_object = open("status.csv", 'w')
+    write_object = open("status.csv",'wb')
     writer = csv.writer(write_object)
     for i in range(len(STATUS_MESSAGE)):
         writer.writerow([STATUS_MESSAGE[i]])
     write_object.close()
+
+
     
