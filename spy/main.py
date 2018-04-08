@@ -80,9 +80,10 @@ def start_chat():
 			print("\nIncorrect choice")
 
 spy_friend.load_friends()
-spy_friend.load_chat()
 spy.current_status_message = spy_status.load_status()
+spy_friend.load_chat()
 start_chat()
 spy_friend.save_friends()
 spy_status.save_status()
+spy_friend.save_chat()
 

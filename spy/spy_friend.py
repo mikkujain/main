@@ -131,7 +131,7 @@ def save_friends():
 
 
 def load_chat():
-	read_chat=open('chat.csv','rb')
+	read_chat=open('chat.csv','rt')
 	reader=csv.reader(read_chat)
 	for row in reader:
 		name=row[0]
@@ -140,7 +140,7 @@ def load_chat():
 		for i in range(len(friends)):			
 			if friends[i].name==name:
 				friends[i].chats.append(msg)
-				print(friends[i].chats)
+				#print(friends[i].chats)
 			
 	read_chat.close()
 
@@ -149,7 +149,7 @@ def save_chat():
 	writer=csv.writer(save_chat1)
 	for i in range(len(friends)):
 		for j in range(len(friends[i].chats)):
-			name=friends[i].name
+			#name=friends[i].name
 			#send_by_me=f
 			writer.writerow([friends[i].name,friends[i].chats[j].message,friends[i].chats[j].send_by_me])
 	save_chat1.close()
