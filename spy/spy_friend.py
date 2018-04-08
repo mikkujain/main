@@ -1,5 +1,6 @@
 import sys
 import csv
+from steganography.steganography import Steganography
 from spy_details import Spy, chatMessage
 import time
 
@@ -64,10 +65,14 @@ def send_message():
 	friend_choice = select_friend()
 
 	message1=[]
+	original_image=input("Enter the name of the image")
+	output_path='output.bmp'
 	message = input("Enter the message to be send: ")
+	Steganography.encode(original_image,output_path, message)
 	send_chat_time=time.ctime()
 	message1.append(message)
 	message1.append(send_chat_time)
+
 	new_chat_message = chatMessage(message1, True)
 
 	friends[friend_choice].chats.append(new_chat_message)
@@ -82,6 +87,12 @@ def read_message():
 	#read_message1.append(send_message())
 	read_message1.append(Read_chat_time)
 
+	output_path=input("What is the output_path name")
+	message=Steganography.decode(output_path)
+	new_chat_message=chatMessage(message,False)
+
+	friends[friend_choice].chats.append(new_chat_message)
+
 	if len(friends[friend_choice].chats) == 0:
 		print("You have no conversation with %s" %friends[friend_choice].name)
 	else:
@@ -90,8 +101,10 @@ def read_message():
 			print("read_message_time :- %s " %(read_message1))
 
 
+
+
 def load_friends():
-	read_object = open("test.csv", 'r')
+	read_object = open("test.csv", 'rb')
 	reader = csv.reader(read_object)
 	for row in reader:
 		# order will be (name, salutation, age, friend_rating)
@@ -116,31 +129,28 @@ def save_friends():
 		writer.writerow([name,salutation,age,rating,is_online])
 	write_object.close()
 
-def load_chats():
-    read_chats = open("chats.csv",'rb')
-    reader = csv.reader(read_chats)
-    for row in reader:
-    	name=row[0]
-    	msg=chatMessage(row[1],row[2])
-    	for i in range(len(friends)):
-    		if friends[i].name == name:
-    			friends[i].chats.append(msg)
-    			return friends[i].chats
 
-	read_chats.close()
-   	
+def load_chat():
+	read_chat=open('chat.csv','rb')
+	reader=csv.reader(read_chat)
+	for row in reader:
+		name=row[0]
+		msg=chatMessage(row[1],row[2])
+		#friend_choice=select_friend()
+		for i in range(len(friends)):			
+			if friends[i].name==name:
+				friends[i].chats.append(msg)
+				print(friends[i].chats)
+			
+	read_chat.close()
 
-def save_chats():
-	write_object=open("chats.csv",'wb')
-	writer=csv.writer(write_object)
+def save_chat():
+	save_chat1=open('chat.csv','wb')
+	writer=csv.writer(save_chat1)
 	for i in range(len(friends)):
 		for j in range(len(friends[i].chats)):
-			writer.writerow([friends[i].name,friends[i].chats[j],friends[i].chats[j].send_by_me])
-
-	write_object.close()
-        
+			name=friends[i].name
+			#send_by_me=f
+			writer.writerow([friends[i].name,friends[i].chats[j].message,friends[i].chats[j].send_by_me])
+	save_chat1.close()
 			
-
-	
-
-	

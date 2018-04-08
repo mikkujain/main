@@ -57,7 +57,7 @@ def start_chat():
 	show_menu = True
 	while show_menu:
 		print("\nYou can select from the operations")
-		print("1. Add Friend\n 2. Add Status\n 3. Send Secret Message\n 4. Read Secret Message\n 5. Add chats\n 6. Close application")
+		print("1. Add Friend\n 2. Add Status\n 3. Send Secret Message\n 4. Read Secret Message\n 5. Close application")
 		menu_choice = int(input("What do you want to do: "))
 
 		if menu_choice == 1:
@@ -72,20 +72,17 @@ def start_chat():
 		elif menu_choice == 4:
 			print("\nYou have chosen to read message")
 			spy_friend.read_message()
+			#print(current_chat)
 		elif menu_choice == 5:
-			print("U have chosen to add a chats in friend")
-			current_chat=spy_friend.load_chats()
-			print(current_chat)
-		elif menu_choice == 6:
 			print("\nYou have chosen to close the application")
 			show_menu = False
 		else:
 			print("\nIncorrect choice")
 
 spy_friend.load_friends()
+spy_friend.load_chat()
 spy.current_status_message = spy_status.load_status()
 start_chat()
 spy_friend.save_friends()
 spy_status.save_status()
-spy_friend.save_chats()
 

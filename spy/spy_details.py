@@ -17,6 +17,7 @@ class chatMessage:
 		#self.timestamp=datetime.now()
 		self.send_by_me=send_by_me
 		
+		
 
 
 

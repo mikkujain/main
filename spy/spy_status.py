@@ -52,7 +52,7 @@ def add_status(current_status_message):
     return updated_status_message
 
 def load_status():
-    read_object = open("status.csv", 'rb')
+    read_object = open("status.csv", 'rt')
     reader = csv.reader(read_object)
     for row in reader:
         STATUS_MESSAGE.append(row[0])
@@ -68,6 +68,7 @@ def save_status():
     for i in range(len(STATUS_MESSAGE)):
         writer.writerow([STATUS_MESSAGE[i]])
     write_object.close()
+
 
 
     
